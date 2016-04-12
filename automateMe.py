@@ -26,7 +26,9 @@ def getBofa(*args):
 	wait("Bank of America")
 
 	if (driver.current_url.find(failedUrl) == -1 and driver.current_url.find(successUrl) != -1):
+		driver.quit()
 		raise Exception("Your Password or Username were incorrect!")
+	wait("Bank of America")
 
 	if (driver.current_url == secureURl):
 		raise Exception("Your identity needs to be verified. Please enter your information and try again")
@@ -36,7 +38,7 @@ def getBofa(*args):
 	balance = driver.find_element_by_xpath("//*[@id=\"Traditional\"]/li[1]/div[1]/div[1]")
 	print "Your Checkings Balance is " + balance.text + "."
 
-	driver.find_element_by_name("onh_sign_off").click
+	driver.find_element_by_name("onh_sign_off").click()
 	driver.quit()
 
 if __name__ == "__main__":
